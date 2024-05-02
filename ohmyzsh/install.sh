@@ -9,3 +9,6 @@ git clone https://github.com/romkatv/powerlevel10k.git $ZSH_CUSTOM/themes/powerl
 
 #To reflect this change on your terminal, restart it or run this command:
 #source ~/.zshrc
+
+#Run command below to configure theme:
+#p10k configure
