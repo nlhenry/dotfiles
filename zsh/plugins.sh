@@ -1,4 +1,5 @@
-
+#This line is known as the shebang. This will tell the interpreter to run the Zsh program located in /bin/sh.
+#!/bin/zsh
 
 #Install zsh-autosuggestions:
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
