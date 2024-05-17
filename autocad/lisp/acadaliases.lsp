@@ -1,4 +1,4 @@
-;testing for git.
+;testing for git again.
 ;Command Aliases
 
 ;Command aliases already in CAD.
