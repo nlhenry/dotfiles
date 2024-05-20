@@ -1,4 +1,4 @@
-## H1 Installing Oh-My-Posh
+## Installing Oh-My-Posh
 #Run this to install Oh My Zsh:
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
