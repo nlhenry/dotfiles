@@ -16,7 +16,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 ```
 source ~/.zshrc
 ```
-## Install Meslo Nerd Font
+## Install Nerd Font
 ```
-Install the font by pressing “y” and then quit Kitty.
+???
 ```
