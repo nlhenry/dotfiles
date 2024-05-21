@@ -27,3 +27,15 @@ sudo apt-get install compton hsetroot rxvt-unicode xsel rofi fonts-noto fonts-mp
 I set my Print Screen button to take screenshoot using scrot, then automatically open it using Viewnior image viewer. <br />
 ## Launching i3
 #### Once all packages are installed logout your current session. Then login again with a i3 session. 
+## Retrieve Configuration File from Github
+```
+git clone https://github.com/nlhenry/i3.git
+```
+#### My dotfiles contains font, so refresh your font config cache `fc-cache -fv` after You copy the font.
+```
+fc-cache -fv
+```
+**Note:** You can deploy this repository recursively using but I recommend you copy the configuration files one by one to give yourself more control.
+```
+git clone https://github.com/nlhenry/i3.git && cp -a i3/. ~
+```
