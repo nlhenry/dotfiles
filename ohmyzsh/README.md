@@ -1,15 +1,28 @@
-## Install Oh My Posh on MacOS and Linux
+## Install Oh My Posh on MacOS and Linux Shell
 #### Run this to install Oh My Zsh:
 ```
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 ```
-#### Or install oh-my-posh using homebrew using this command:
+#### Or install oh-my-posh using homebrew with this command:
 ```
 brew install jandedobbeleer/oh-my-posh/oh-my-posh
 ```
 #### After installation run this command to update, upgrade and execute Oh My Posh:
 ```
-brew update && brew upgrade && exec zsh
+brew update oh-my-posh && brew upgrade oh-my-posh && exec zsh
+```
+## Install Oh My Posh on Windows Powershell
+#### Run this to install Oh My Zsh:
+```
+winget upgrade JanDeDobbeleer.OhMyPosh -s winget
+```
+#### Or install oh-my-posh using scoop with this command:
+```
+scoop install https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/oh-my-posh.json
+```
+#### After installation run this command to update and upgrade oh my posh:
+```
+scoop update oh-my-posh && scoop upgrade oh-my-posh
 ```
 ## Install PowerLevel10K Theme
 #### Run this to install PowerLevel10K:
