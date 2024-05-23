@@ -1,9 +1,17 @@
-## Install Oh My Zsh
+## Install Oh My Posh on MacOS and Linux
 #### Run this to install Oh My Zsh:
 ```
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 ```
-## Install PowerLevel10K Theme for Oh My Zsh
+#### Or install oh-my-posh using homebrew using this command:
+```
+brew install jandedobbeleer/oh-my-posh/oh-my-posh
+```
+#### After installation run this command to update, upgrade and execute Oh My Posh:
+```
+brew update && brew upgrade && exec zsh
+```
+## Install PowerLevel10K Theme
 #### Run this to install PowerLevel10K:
 ```
 git clone https://github.com/romkatv/powerlevel10k.git $ZSH_CUSTOM/themes/powerlevel10k
