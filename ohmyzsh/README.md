@@ -1,4 +1,4 @@
-## Install Oh My Posh on MacOS and Linux Shell
+# Install Oh My Posh on MacOS and Linux Shell
 #### Run this to install Oh My Zsh:
 ```
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
@@ -11,7 +11,7 @@ brew install jandedobbeleer/oh-my-posh/oh-my-posh
 ```
 brew update oh-my-posh && brew upgrade oh-my-posh && exec zsh
 ```
-## Install Oh My Posh on Windows Powershell
+# Install Oh My Posh on Windows Powershell
 #### Run this to install Oh My Zsh:
 ```
 winget upgrade JanDeDobbeleer.OhMyPosh -s winget
@@ -36,7 +36,7 @@ Now add the line below:
 ```
 oh-my-posh init pwsh | Invoke-Expression
 ```
-## Install PowerLevel10K Theme
+# Install PowerLevel10K Theme
 #### Run this to install PowerLevel10K:
 ```
 git clone https://github.com/romkatv/powerlevel10k.git $ZSH_CUSTOM/themes/powerlevel10k
@@ -49,11 +49,11 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 ```
 source ~/.zshrc
 ```
-## Install Nerd Font
+# Install Nerd Font
 ```
 ???
 ```
-## Install ZSH Plugins
+# Install ZSH Plugins
 #### Install zsh-autosuggestions:
 ```
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
