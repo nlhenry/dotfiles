@@ -24,6 +24,18 @@ scoop install https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/downl
 ```
 scoop update oh-my-posh && scoop upgrade oh-my-posh
 ```
+#### For oh-my-posh to start when opening a new shell you have to update the $PROFILE file. Open $PROFILE:
+```
+nvim $PROFILE
+```
+If the above gives you an error, create the file using this command:
+```
+New-Item -Path $PROFILE -Type File -Force
+```
+Now add the line below:
+```
+oh-my-posh init pwsh | Invoke-Expression
+```
 ## Install PowerLevel10K Theme
 #### Run this to install PowerLevel10K:
 ```
