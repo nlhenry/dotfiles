@@ -1,12 +1,16 @@
-# Dotfiles
+# Installing Dotfiles
 
 [Here's a description of how my dotfiles work](https://shaky.sh/simple-dotfiles/).
 
-## Install
-
+## Clone repository with git and cd into directory:
 ```
 git clone <this-repo>
+```
+```
 cd <this-repo>
+```
+## Bootstrap Script:
+```
 ./install/bootstrap.sh
 ```
 
