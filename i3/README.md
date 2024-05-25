@@ -29,7 +29,7 @@ I set my Print Screen button to take screenshoot using scrot, then automatically
 #### Once all packages are installed logout your current session. Then login again with a i3 session. 
 ## Retrieve Configuration File from Github
 ```
-git clone https://github.com/nlhenry/i3.git
+git clone https://github.com/nlhenry/dotfiles/i3
 ```
 #### My dotfiles contains font, so refresh your font config cache `fc-cache -fv` after You copy the font.
 ```
