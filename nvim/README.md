@@ -1,4 +1,4 @@
-# Installation
+## Installation
 ### Install scoop as administrator:
 `iex "& {$(irm get.scoop.sh)} -RunAsAdmin"`
 ### Install GNU Compiler Collection and binutils:
