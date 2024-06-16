@@ -4,7 +4,7 @@
 
 ## Clone repository with git and cd into directory:
 ```
-git clone <this-repo>
+git clone https://github.com/nlhenry/dotfiles
 ```
 ```
 cd <this-repo>
