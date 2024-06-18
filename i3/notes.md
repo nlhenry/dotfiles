@@ -1,6 +1,6 @@
 # How to create a minimal operating system installation using Debian and i3 window manager?
 
-Hardware and software you need:
+## Hardware and software you need:
 - Laptop/Desktop
 - Flashdrive (with at least 8 gigs of storage)
 - Debian ISO File
@@ -11,7 +11,7 @@ Hardware and software you need:
 - pulseaudio
 - nm-tray (simple NetworkManager front end with information icon in the system tray)
 
-Install Debian:
+## Install Debian:
 1. On the BIOS install screen select "Install". The screen will then boot into the install manager. 
 2. Next select a language to use for the installation process and click continue. 
 3. Next enter the hostname for the system. I chose debian-i3, then click continue.
