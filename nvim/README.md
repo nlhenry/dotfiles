@@ -7,7 +7,7 @@ iex "& {$(irm get.scoop.sh)} -RunAsAdmin"
 ```
 scoop install gcc
 ```
-### Install Neovim
+### Install Neovim:
 ```
 scoop install neovim
 ```
@@ -20,11 +20,11 @@ Move-Item $env:LOCALAPPDATA\nvim $env:LOCALAPPDATA\nvim.bak
 # optional but recommended
 Move-Item $env:LOCALAPPDATA\nvim-data $env:LOCALAPPDATA\nvim-data.bak
 ```
-### Clone the starter
+### Clone the starter:
 ```
 git clone https://github.com/LazyVim/starter $env:LOCALAPPDATA\nvim
 ```
-### Remove the .git folder, so you can add it to your own repo later
+### Remove the .git folder, so you can add it to your repo later:
 ```
 Remove-Item $env:LOCALAPPDATA\nvim\.git -Recurse -Force
 ```
