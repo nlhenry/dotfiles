@@ -21,32 +21,41 @@ Install Debian:
 7. Next create a good password for the new user and then click continue.
 8. Next partition disk. I don't usually dual boot so I normally select the "Guided - use entire disk" option. Click continue when done. 
 
-*Installation command for WM and DM config: (from YouTube source. see below for rewrite)
-`sudo install i3 i3blocks lightdm x11-xserver-utils pulseaudio nm-tray`
-
-
-Install Ly, a terminal-based (CLI) display manager. (https://github.com/fairyglade/ly)
+## *Installation command for WM and DM config: (from YouTube source. see below for rewrite)
+```
+sudo install i3 i3blocks lightdm x11-xserver-utils pulseaudio nm-tray
+```
+## Install Ly, a terminal-based (CLI) display manager. (https://github.com/fairyglade/ly)
 Install dependencies for ly:
-`sudo apt install build-essential libpam0g-dev libxcb-xkb-dev`
-
+```
+sudo apt install build-essential libpam0g-dev libxcb-xkb-dev
+```
 Clone and Compiling:
 Clone the repository:
-`git clone https://github.com/fairyglade/ly`
-
+```
+git clone https://github.com/fairyglade/ly
+```
 Change the directory to ly:
-`cd ly`
-
+```
+cd ly
+```
 Compile:
-`zig build`
-
+```
+zig build
+```
 Test in a tty:
-`zig build run`
-
+```
+zig build run
+```
 Install Ly and the provided systemd service file:
-`zig build installsystemd`
-
+```
+zig build installsystemd
+```
 Enable the service:
-`systemctl enable ly.service` 
-
+```
+systemctl enable ly.service 
+```
 If you need to switch between ttys after Ly's start you also have to disable getty on Ly's tty to prevent "login" from spawning on top of it:
-`systemctl disable getty@tty2.service`
+```
+systemctl disable getty@tty2.service
+```
