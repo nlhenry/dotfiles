@@ -1,41 +1,61 @@
-# i3 Window Manager Setup
-## Requirements
-#### Working Desktop Environment or Window Manager. I will be using Xfce because it is minimal and includes essential packages built in. 
-## Install i3 Window Manager
-#### Use this command in the terminal:
+# How to create a minimal operating system installation using Debian and i3 window manager?
+
+## Hardware and software you need:
+- Laptop/Desktop
+- Flashdrive (with at least 8 gigs of storage)
+- Debian ISO File
+- i3wm (Window Manager)
+- i3blocks (feed generator for text-based status bars)
+- lightdm (Display Manager) *Look into using ly as an alternative.
+- x11-xserver-utils 
+- pulseaudio
+- nm-tray (simple NetworkManager front end with information icon in the system tray)
+
+## Install Debian:
+1. On the BIOS install screen select "Install". The screen will then boot into the install manager. 
+2. Next select a language to use for the installation process and click continue. 
+3. Next enter the hostname for the system. I chose debian-i3, then click continue.
+4. Next configure the network. This will ask for a domain name. (I always leave these entries empty)
+5. Next setup users and passwords for root. (I always leave these entries empty to avoid administration privilege issues.)
+6. Next create a full name for the new user. Then click continue.
+7. Next create a good password for the new user and then click continue.
+8. Next partition disk. I don't usually dual boot so I normally select the "Guided - use entire disk" option. Click continue when done. 
+
+## *Installation command for WM and DM config: (from YouTube source. see below for rewrite)
 ```
-sudo apt install i3
+sudo apt install i3 i3blocks lightdm x11-xserver-utils pulseaudio nm-tray
 ```
-#### The i3 install will give you i3-wm, dunst, i3lock, i3status, and suckless-tools. If the packages do not install automatically for some reason, just install them manually using the command below.
+## Install Ly, a terminal-based (CLI) display manager. (https://github.com/fairyglade/ly)
+Install dependencies for ly:
 ```
-sudo apt-get install i3-wm dunst i3lock i3status suckless-tools
+sudo apt install build-essential libpam0g-dev libxcb-xkb-dev
 ```
-#### Install some additional packages for further customization:
+Clone and Compiling:
+Clone the repository:
 ```
-sudo apt-get install compton hsetroot rxvt-unicode xsel rofi fonts-noto fonts-mplus xsettingsd lxappearance scrot viewnior
+git clone https://github.com/fairyglade/ly
 ```
-## Explanations of Additional Packages
-- Compton is a compositor to provide some desktop effects like shadow, transparency, fade, and transiton. 
-- Hsetroot is a wallpaper handler. i3 has no wallpaper handler by default.
-- URxvt is a lightweight terminal emulator, part of *i3-sensible-terminal*.
-- Xsel is a program to access X clipboard. We need it to make copy-paste in URxvt available. Hit Alt+C to copy, and Alt+V to paste. 
-- Rofi is a program launcher, similar with dmenu but with more options.
-- Noto Sans and M+ are my favourite fonts used in my configuration.
-- Xsettingsd is a simple settings daemon to load fontconfig and some other options. Without this, fonts would look rasterized in some applications.
-- LXAppearance is used for changing GTK theme icons, fonts, and some other preferences.
-- Scrot is for taking screenshoot. I use it in my configuration for Print Screen button.
-I set my Print Screen button to take screenshoot using scrot, then automatically open it using Viewnior image viewer. <br />
-## Launching i3
-#### Once all packages are installed logout your current session. Then login again with a i3 session. 
-## Retrieve Configuration File from Github
+Change the directory to ly:
 ```
-git clone https://github.com/nlhenry/dotfiles/i3
+cd ly
 ```
-#### My dotfiles contains font, so refresh your font config cache `fc-cache -fv` after You copy the font.
+Compile:
 ```
-fc-cache -fv
+zig build
 ```
-**Note:** You can deploy this repository recursively using but I recommend you copy the configuration files one by one to give yourself more control.
+Test in a tty:
 ```
-git clone https://github.com/nlhenry/i3.git && cp -a i3/. ~
+zig build run
+```
+Install Ly and the provided systemd service file:
+```
+zig build installsystemd
+```
+Enable the service:
+```
+systemctl enable ly.service 
+```
+If you need to switch between ttys after Ly's start you also have to disable getty on Ly's tty to prevent "login" from spawning on top of it:
+```
+systemctl disable getty@tty2.service
 ```
