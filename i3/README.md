@@ -30,5 +30,5 @@ sudo apt install git && curl
 # Install i3 window manager and lightdm.
 sudo apt install i3 i3blocks lightdm x11-xserver-utils pulseaudio nm-tray
 ```
-# Retreive i3 configuration files using git.
-# Copy i3 configuration files to the local .config folder.
+<!-- Retreive i3 configuration files using git. -->
+<!-- Copy i3 configuration files to the local .config folder. -->
