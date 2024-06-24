@@ -23,7 +23,7 @@
 
 ## Post Install:
 ```
-# Install Git and Curl.
+# Install git and curl.
 sudo apt install git && curl
 ```
 ```
@@ -31,4 +31,6 @@ sudo apt install git && curl
 sudo apt install i3 i3blocks lightdm x11-xserver-utils pulseaudio nm-tray
 ```
 <!-- Retreive i3 configuration files using git. -->
+<!-- git clone https://github.com/nlhenry/dotfiles/i3 -->
 <!-- Copy i3 configuration files to the local .config folder. -->
+<!-- cp -r ~/git/i3 ~/.config/ && cp -r ~/git/i3status ~/.config-->
