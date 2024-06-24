@@ -23,7 +23,7 @@
 
 ## *Installation command for WM and DM config: (from YouTube source. see below for rewrite)
 ```
-sudo install i3 i3blocks lightdm x11-xserver-utils pulseaudio nm-tray
+sudo apt install i3 i3blocks lightdm x11-xserver-utils pulseaudio nm-tray
 ```
 ## Install Ly, a terminal-based (CLI) display manager. (https://github.com/fairyglade/ly)
 Install dependencies for ly:
