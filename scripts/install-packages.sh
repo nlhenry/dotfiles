@@ -3,7 +3,6 @@ log_file=~/install_progress_log.txt
 # ---
 # Install starter packages
 # ---
-
 sudo apt -y install git
 if type -p git > /dev/null; then
     echo "git Installed" >> $log_file
@@ -59,11 +58,21 @@ if type -p nm-tray > /dev/null; then
 else
     echo "nm-tray FAILED TO INSTALL!!!" >> $log_file
 fi
+
+# ---
+# Retreive configuration files
+# ---
+git clone https://github.com/nlhenry/dotfiles
+
+rm -rf ~/.config/i3 ~/.config/i3status
+
+cp -r ~/git/i3 ~/.config/ && cp -r ~/git/i3status ~/.config/
+
 #==============
 # Give the user a summary of what has been installed
 #==============
 echo -e "\n====== Summary ======\n"
 cat $log_file
 echo
-echo "Enjoy -Jarrod"
+echo "Complete -Nik"
 rm $log_file
