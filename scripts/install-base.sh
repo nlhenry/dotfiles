@@ -62,14 +62,6 @@ else
     echo "nm-tray FAILED TO INSTALL!!!" >> $log_file
 fi
 
-# ---
-# Retreive configuration files
-# ---
-git clone https://github.com/nlhenry/dotfiles
-
-rm -rf ~/.config/i3 ~/.config/i3status
-
-cp -r ~/git/i3 ~/.config/ && cp -r ~/git/i3status ~/.config/
 
 #==============
 # Give the user a summary of what has been installed
