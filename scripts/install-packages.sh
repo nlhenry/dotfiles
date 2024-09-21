@@ -1,7 +1,7 @@
 log_file=~/install_progress_log.txt
 
 # ---
-# Install starter packages
+# Install git and curl
 # ---
 sudo apt -y install git
 if type -p git > /dev/null; then
@@ -17,6 +17,9 @@ else
     echo "curl FAILED TO INSTALL!!!" >> $log_file
 fi
 
+# ---
+#Install i3 window manager and other packages for i3wm
+# ---
 sudo apt -y install i3
 if type -p i3 > /dev/null; then
     echo "i3 Installed" >> $log_file
