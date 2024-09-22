@@ -5,16 +5,16 @@ log_file=~/install_progress_log.txt
 # ---
 sudo apt -y install git
 if type -p git > /dev/null; then
-    echo "git Installed" >> $log_file
+    echo "git Install Complete" >> $log_file
 else
-    echo "git FAILED TO INSTALL!!!" >> $log_file
+    echo "git Failed to Install" >> $log_file
 fi
 
 sudo apt -y install curl
 if type -p curl > /dev/null; then
-    echo "curl Installed" >> $log_file
+    echo "curl Install Complete" >> $log_file
 else
-    echo "curl FAILED TO INSTALL!!!" >> $log_file
+    echo "curl Failed to Install" >> $log_file
 fi
 
 # ---
@@ -22,46 +22,45 @@ fi
 # ---
 sudo apt -y install i3
 if type -p i3 > /dev/null; then
-    echo "i3 Installed" >> $log_file
+    echo "i3 Install Complete" >> $log_file
 else
-    echo "i3 FAILED TO INSTALL!!!" >> $log_file
+    echo "i3 Failed to Install" >> $log_file
 fi
 
 sudo apt -y install i3blocks
 if type -p i3blocks > /dev/null; then
-    echo "i3blocks Installed" >> $log_file
+    echo "i3blocks Install Complete" >> $log_file
 else
-    echo "i3blocks FAILED TO INSTALL!!!" >> $log_file
+    echo "i3blocks Failed to Install" >> $log_file
 fi
 
 sudo apt -y install lightdm
 if type -p lightdm > /dev/null; then
-    echo "lightdm Installed" >> $log_file
+    echo "lightdm Install Complete" >> $log_file
 else
-    echo "lightdm FAILED TO INSTALL!!!" >> $log_file
+    echo "lightdm Failed to Install" >> $log_file
 fi
 
 sudo apt -y install x11-xserver-utils 
 if type -p x11-xserver-utils > /dev/null; then
-    echo "x11-xserver-utils Installed" >> $log_file
+    echo "x11-xserver-utils Install Complete" >> $log_file
 else
-    echo "x11-xserver-utils FAILED TO INSTALL!!!" >> $log_file
+    echo "x11-xserver-utils Failed to Install" >> $log_file
 fi
 
 sudo apt -y install pulseaudio
 if type -p pulseaudio > /dev/null; then
-    echo "pulseaudio Installed" >> $log_file
+    echo "pulseaudio Install Complete" >> $log_file
 else
-    echo "pulseaudio FAILED TO INSTALL!!!" >> $log_file
+    echo "pulseaudio Failed to Install" >> $log_file
 fi
 
 sudo apt -y install nm-tray
 if type -p nm-tray > /dev/null; then
-    echo "nm-tray Installed" >> $log_file
+    echo "nm-tray Install Complete" >> $log_file
 else
-    echo "nm-tray FAILED TO INSTALL!!!" >> $log_file
+    echo "nm-tray Failed to Install" >> $log_file
 fi
-
 
 #==============
 # Give the user a summary of what has been installed
