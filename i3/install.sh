@@ -1,4 +1,4 @@
-!/usr/bin/bash 
+#!/usr/bin/bash 
 
 mv ~/.config/i3/config ~/.config/i3/config_bak
 
