@@ -1,0 +1,384 @@
+# Samba Shares on Ubuntu
+
+This guide explains how to create a Samba share on one Ubuntu machine and mount it from another Ubuntu machine using the command line.
+
+## Network Layout
+
+- **Samba server:** Ubuntu machine hosting the shared directory
+- **Client:** Ubuntu machine mounting the share
+- **Example server IP:** `192.168.1.25`
+- **Example share name:** `shared`
+
+Replace the example values with your own.
+
+---
+
+## 1. Set Up the Samba Server
+
+### Install Samba
+
+```bash
+sudo apt update
+sudo apt install samba
+```
+
+### Create a Shared Directory
+
+```bash
+sudo mkdir -p /srv/samba/shared
+sudo chown -R "$USER":"$USER" /srv/samba/shared
+sudo chmod -R 755 /srv/samba/shared
+```
+
+### Create a Samba Password
+
+Samba uses its own password database. Add your existing Linux user:
+
+```bash
+sudo smbpasswd -a "$USER"
+```
+
+Enable the Samba user:
+
+```bash
+sudo smbpasswd -e "$USER"
+```
+
+Check your username:
+
+```bash
+whoami
+```
+
+You will use this username in the Samba configuration.
+
+### Back Up the Samba Configuration
+
+```bash
+sudo cp /etc/samba/smb.conf /etc/samba/smb.conf.bak
+```
+
+### Configure the Share
+
+Open the Samba configuration file:
+
+```bash
+sudo nano /etc/samba/smb.conf
+```
+
+Add the following section at the bottom:
+
+```ini
+[shared]
+    path = /srv/samba/shared
+    browseable = yes
+    read only = no
+    guest ok = no
+    valid users = YOUR_USERNAME
+    create mask = 0664
+    directory mask = 0775
+```
+
+Replace `YOUR_USERNAME` with your Linux username.
+
+For example:
+
+```ini
+[shared]
+    path = /srv/samba/shared
+    browseable = yes
+    read only = no
+    guest ok = no
+    valid users = nlhenry
+    create mask = 0664
+    directory mask = 0775
+```
+
+Save and exit Nano:
+
+1. Press `Ctrl+O`
+2. Press `Enter`
+3. Press `Ctrl+X`
+
+### Check the Configuration
+
+```bash
+testparm
+```
+
+If the configuration is valid, restart Samba:
+
+```bash
+sudo systemctl restart smbd
+sudo systemctl enable smbd
+```
+
+### Allow Samba Through the Firewall
+
+If UFW is enabled:
+
+```bash
+sudo ufw allow Samba
+```
+
+Check the server's IP address:
+
+```bash
+hostname -I
+```
+
+Example output:
+
+```text
+192.168.1.25
+```
+
+---
+
+## 2. Mount the Share from Another Ubuntu Machine
+
+Run these commands on the Ubuntu client machine.
+
+### Install CIFS Utilities
+
+```bash
+sudo apt update
+sudo apt install cifs-utils
+```
+
+### Create a Mount Point
+
+```bash
+sudo mkdir -p /mnt/shared
+```
+
+### Test-Mount the Samba Share
+
+Replace `192.168.1.25` with the Samba server's IP address:
+
+```bash
+sudo mount -t cifs //192.168.1.25/shared /mnt/shared \
+  -o username=YOUR_USERNAME
+```
+
+Enter the Samba password when prompted.
+
+Check the mounted directory:
+
+```bash
+ls -la /mnt/shared
+```
+
+Create a test file:
+
+```bash
+echo "Samba works" | sudo tee /mnt/shared/test.txt
+```
+
+---
+
+## 3. Mount the Share Automatically at Boot
+
+### Create a Credentials File
+
+On the Ubuntu client, create a file to store the Samba login details:
+
+```bash
+sudo nano /etc/samba/credentials
+```
+
+Add:
+
+```text
+username=YOUR_USERNAME
+password=YOUR_SAMBA_PASSWORD
+```
+
+Protect the file so only root can read it:
+
+```bash
+sudo chmod 600 /etc/samba/credentials
+```
+
+### Find Your User and Group IDs
+
+```bash
+id YOUR_USERNAME
+```
+
+Typical output may include:
+
+```text
+uid=1000(YOUR_USERNAME) gid=1000(YOUR_USERNAME)
+```
+
+### Edit `/etc/fstab`
+
+```bash
+sudo nano /etc/fstab
+```
+
+Add this line:
+
+```fstab
+//192.168.1.25/shared /mnt/shared cifs credentials=/etc/samba/credentials,uid=1000,gid=1000,iocharset=utf8,_netdev 0 0
+```
+
+Replace:
+
+- `192.168.1.25` with the Samba server's IP address
+- `shared` with the share name
+- `1000` for `uid` and `gid` with your actual IDs if different
+
+### Test the `fstab` Entry
+
+```bash
+sudo mount -a
+```
+
+If there are no errors, verify the mount:
+
+```bash
+mount | grep /mnt/shared
+```
+
+You can also check the contents:
+
+```bash
+ls -la /mnt/shared
+```
+
+---
+
+## Useful Commands
+
+### Check Samba Status
+
+```bash
+systemctl status smbd
+```
+
+### Restart Samba
+
+```bash
+sudo systemctl restart smbd
+```
+
+### View Samba Logs
+
+```bash
+sudo journalctl -u smbd
+```
+
+### List Available Shares
+
+Run this on the client:
+
+```bash
+smbclient -L //192.168.1.25 -U YOUR_USERNAME
+```
+
+### Connect Directly to a Share
+
+```bash
+smbclient //192.168.1.25/shared -U YOUR_USERNAME
+```
+
+### Check Samba Configuration
+
+```bash
+testparm
+```
+
+### Check Filesystem Permissions
+
+Run this on the Samba server:
+
+```bash
+ls -ld /srv/samba/shared
+```
+
+---
+
+## Troubleshooting
+
+### Permission Denied
+
+Check the directory permissions:
+
+```bash
+ls -ld /srv/samba/shared
+```
+
+Check the Samba configuration:
+
+```bash
+testparm
+```
+
+Make sure the user is listed correctly:
+
+```ini
+valid users = YOUR_USERNAME
+```
+
+Also verify that the Samba password was created:
+
+```bash
+sudo smbpasswd -a YOUR_USERNAME
+```
+
+### Cannot Connect to the Server
+
+Check the server IP address:
+
+```bash
+hostname -I
+```
+
+Check whether Samba is running:
+
+```bash
+systemctl status smbd
+```
+
+If UFW is enabled, allow Samba:
+
+```bash
+sudo ufw allow Samba
+```
+
+Test network connectivity from the client:
+
+```bash
+ping 192.168.1.25
+```
+
+### Unmount the Share
+
+```bash
+sudo umount /mnt/shared
+```
+
+If the mount is busy, use:
+
+```bash
+sudo umount -l /mnt/shared
+```
+
+---
+
+## Samba Path Format
+
+The general format for a Samba share is:
+
+```text
+//SERVER_IP/SHARE_NAME
+```
+
+Example:
+
+```text
+//192.168.1.25/shared
+```
+````_
