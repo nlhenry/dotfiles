@@ -1,17 +1,27 @@
+# Shell configuration
 alias ae='nvim ~/.bash_aliases'
 alias als='cat ~/.bash_aliases'
 alias cnf='nvim ~/.bashrc'
-alias rpi='ssh nlhenry@rpi3'
+alias src='source ~/.bashrc'
+
+# System updates
 alias upd='sudo apt update'
 alias upg='sudo apt upgrade'
-alias es='swaymsg exit'
-alias swayc='nvim ~/.config/sway/config'
+
+# Navigation and display
 alias clr='clear'
-alias src='source ~/.bashrc'
-alias ff='fastfetch'
 alias docs='cd ~/Documents'
 alias hm='cd && clear && fastfetch'
-# Python Aliases
+alias ff='fastfetch'
+
+# Sway
+alias swayc='nvim ~/.config/sway/config'
+alias es='swaymsg exit'
+
+# Remote access
+alias rpi='ssh nlhenry@rpi3'
+
+# Python virtual environments
 alias cve='python3 -m venv .venv'
 alias ave='source .venv/bin/activate'
 alias dve='deactivate'
