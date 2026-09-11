@@ -43,6 +43,9 @@ function prompt {
     $computer = $env:COMPUTERNAME
     $currentPath = (Get-Location).Path
 
+    # Update the Windows Terminal tab title without changing the prompt
+    $Host.UI.RawUI.WindowTitle = $currentPath
+
     # Display the home directory as ~
     if ($currentPath -eq $HOME) {
         $displayPath = "~"
