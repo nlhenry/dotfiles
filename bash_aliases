@@ -14,6 +14,9 @@ alias docs='cd ~/Documents'
 alias hm='cd && clear && fastfetch'
 alias ff='fastfetch'
 
+# Neovim
+alias ncnf='nvim ~/.config/nvim/init.lua'
+
 # Sway
 alias swayc='nvim ~/.config/sway/config'
 alias es='swaymsg exit'
