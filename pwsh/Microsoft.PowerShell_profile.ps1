@@ -40,7 +40,7 @@ Set-Location "C:\Users\WA DESIGN3"
 
 function prompt {
     $user = $env:USERNAME
-    $computer = $env:COMPUTERNAME
+    $computer = $env:COMPUTERNAME.ToLowerInvariant()
     $currentPath = (Get-Location).Path
 
     # Update the Windows Terminal tab title without changing the prompt
