@@ -43,7 +43,7 @@ function prompt {
     $computer = $env:COMPUTERNAME
     $currentPath = (Get-Location).Path
 
-    # Replace the home directory with ~
+    # Display the home directory as ~
     if ($currentPath -eq $HOME) {
         $displayPath = "~"
     }
@@ -54,10 +54,14 @@ function prompt {
         $displayPath = $currentPath
     }
 
-    # First line: user@computer:path
-    Write-Host "$($Catppuccin.Green)$user@$computer$($Catppuccin.Reset):$($Catppuccin.Blue)$displayPath$($Catppuccin.Reset)"
+    # user@computer:path
+    Write-Host "$($Catppuccin.Peach)$user$($Catppuccin.Reset)" -NoNewline
+    Write-Host "$($Catppuccin.Text)@$($Catppuccin.Reset)" -NoNewline
+    Write-Host "$($Catppuccin.Mauve)$computer$($Catppuccin.Reset)" -NoNewline
+    Write-Host "$($Catppuccin.Text):$($Catppuccin.Reset)" -NoNewline
+    Write-Host "$($Catppuccin.Green)$displayPath$($Catppuccin.Reset)"
 
-    # Second line: Unix-style prompt symbol
+    # Unix-style prompt symbol
     return "$($Catppuccin.Mauve)❯ $($Catppuccin.Reset)"
 }
 
