@@ -127,3 +127,35 @@ PS1="\
 \[\e[38;2;166;227;161m\]\w\[\e[0m\]\n\
 \[\e[38;2;245;194;231m\]>\[\e[0m\] "
 #
+# Ubuntu Header System Fetch
+fetch() {
+    # Define colors
+    local c_head="\e[1;31m"   # Bold Ubuntu Orange/Red for the header
+    local c_title="\e[1;35m"  # Bold Magenta for your username
+    local c_label="\e[1;36m"  # Bold Cyan for labels
+    local c_reset="\e[0m"      # Reset
+
+    # Gather data
+    local user_host="${USER}@$(hostname)"
+    local os=$(grep -i '^PRETTY_NAME' /etc/os-release | cut -d'"' -f2)
+    local kernel=$(uname -r)
+    local uptime=$(uptime -p | sed 's/up //')
+    local shell=$(basename "$SHELL")
+
+    # Print Top Header Logo 
+    printf '\033[38;2;244;162;97m'
+    echo -e "     @               @"
+    echo -e "@  @ @,m. @  @ ,mm. m@m  @  @"
+    echo -e "@  @ @  8 @  @ @  @  @   @  @"
+    echo -e "\`\"\"' \`\"\"' \`\"\"' \"  \"  \"   \`\"\"'"
+    printf '\033[0m'
+    # echo -e "${c_title}${user_host}${c_reset}"
+    echo -e "${c_label}OS:${c_reset}      $os"
+    echo -e "${c_label}Kernel:${c_reset}  $kernel"
+    echo -e "${c_label}Uptime:${c_reset}  $uptime"
+    echo -e "${c_label}Shell:${c_reset}   $shell"
+    echo -e "=============================="
+}
+
+# Run the fetch automatically on terminal startup
+fetch
