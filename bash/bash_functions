@@ -4,28 +4,31 @@ fetch() {
     local c_head="\e[1;31m"   # Bold Ubuntu Orange/Red for the header
     local c_title="\e[1;35m"  # Bold Magenta for your username
     local c_label="\e[1;36m"  # Bold Cyan for labels
-    local c_reset="\e[0m"      # Reset
+    local c_reset="\e[0m"     # Reset
 
     # Gather data
     local user_host="${USER}@$(hostname)"
     local os=$(grep -i '^PRETTY_NAME' /etc/os-release | cut -d'"' -f2)
     local kernel=$(uname -r)
     local uptime=$(uptime -p | sed 's/up //')
+    local de="${XDG_CURRENT_DESKTOP##*:}" && de="${de,,}"
     local shell=$(basename "$SHELL")
+    local term=$(ps -o comm= -p $(ps -o ppid= -p $$) | tr -d ' ' | tr '[:upper:]' '[:lower:]')
 
     # Print Top Header Logo 
     printf '\033[38;2;244;162;97m'
     echo -e "     @               @"
-    echo -e "@  @ @,m. @  @ ,mm. m@m  @  @"
-    echo -e "@  @ @  8 @  @ @  @  @   @  @"
-    echo -e "\`\"\"' \`\"\"' \`\"\"' \"  \"  \"   \`\"\"'"
+    echo -e "@  @ @,m. @  @ ,mm. m@m @  @"
+    echo -e "@  @ @  @ @  @ @  @  @  @  @"
+    echo -e "\`\"\"' \`\"\"' \`\"\"' \"  \"  \"  \`\"\"'"
     printf '\033[0m'
-    # echo -e "${c_title}${user_host}${c_reset}"
     echo -e "${c_label}OS:${c_reset}      $os"
     echo -e "${c_label}Kernel:${c_reset}  $kernel"
     echo -e "${c_label}Uptime:${c_reset}  $uptime"
+    echo -e "${c_label}DE:${c_reset}      $de"
     echo -e "${c_label}Shell:${c_reset}   $shell"
-    echo -e "=============================="
+    echo -e "${c_label}Term:${c_reset}    $term"
+    echo -e "============================"
 }
 
 # Run the fetch automatically on terminal startup
