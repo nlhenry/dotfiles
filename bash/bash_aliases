@@ -11,8 +11,8 @@ alias upg='sudo apt upgrade'
 # Navigation and display
 alias clr='clear'
 alias docs='cd ~/Documents'
-alias hm='cd && clear && fastfetch'
-alias ff='fastfetch'
+alias hm='cd && clr && fetch'
+alias ff='fetch'
 
 # Neovim
 alias ncnf='nvim ~/.config/nvim/init.lua'
